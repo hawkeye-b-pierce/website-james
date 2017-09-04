@@ -81,12 +81,14 @@
   .grayscale-min {
       filter: grayscale(50%);
   }
+
   .top {
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 50;
   }
+
   header {
     margin-top: 60px;
     padding-top: 50px;
@@ -101,6 +103,16 @@
     margin-left: 10px;
     font-size: 38px;
     text-align: left;
+  }
+
+  #work {
+    overflow: hidden;
+  }
+
+  .sub-section {
+    width: 400px;
+    float: left;
+    margin: 10px;
   }
 </style>
 <body>
@@ -133,13 +145,31 @@
 <!-- About Section -->
 <div style="padding:128px 16px" id="about">
   <h3 class="center">ABOUT ME</h3>
-  <p class="center ">I am a problem solver, a constant learner, a builder, an engineer, a designer, and a perfector of run on sentences and lists and things.</p>
+  <p class="center">I am a problem solver, a constant learner, a builder, an engineer, a designer, and a perfector of run on sentences and lists and things.</p>
 </div>
 
 <!-- Work Section -->
 <div style="padding:128px 16px" id="work">
   <h3 class="center">MY WORK</h3>
-  <p class="center ">What we've done for people</p>
+  <div class="sub-section">
+    <h4>Lucidoc: Lead Application Developer</h4>
+    <div>
+      Expand upon and broaden a web application which assists companies in compliance management. Adding new features and applications. Broad range of responsibilities: Database programming, UI, gathering and interpreting customer feedback, maintenance, training, creating project development process, documentation, importing new customer data, etc.
+    </div>
+  </div>
+  <div class="sub-section">
+    <h4>Lucidoc: Entry-Level Software Engineer</h4>
+    <div>
+      Develop and maintain a web application which assists companies in compliance management. Broad range of responsibilities: Database programming, UI, maintenance, gathering and interpreting customer feedback.
+    </div>
+  </div>
+  <div class="sub-section">
+    <h4>US Bank: Teller</h4>
+    <div>
+      Introduction to professional environment and experience working for larger corporation. Experience building and being a part of a team, knowing responsibilities/abilities of all coworker roles. Current year to date customer approval.
+      rating of 90%. Tasks: Cash handling, sales, customer service, paperwork, responsiveness, multitasking, organization
+    </div>
+  </div>
 </div>
 
 <!-- Projects Section -->

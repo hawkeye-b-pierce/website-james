@@ -91,7 +91,7 @@
 
   header {
     margin-top: 60px;
-    padding-top: 50px;
+    padding-top: 70px;
   }
   #home .content {
     width: 650px;
@@ -103,6 +103,16 @@
     margin-left: 10px;
     font-size: 38px;
     text-align: left;
+  }
+
+  #home #text-cycle {
+    display: inline;
+    margin: 0px;
+  }
+
+  #home #text-cycle div {
+    display: none;
+    margin: 0px;
   }
 
   #about {
@@ -136,6 +146,28 @@
     overflow: hidden;
   }
 </style>
+<script type="text/javascript">
+  function cycleText () {
+
+    var textCycleCounter = 0;
+    document.getElementById("like-" + textCycleCounter).style.display = 'inline';
+
+    window.setInterval(function () {
+        var current = document.getElementById("like-" + textCycleCounter);
+
+        textCycleCounter = (textCycleCounter + 1) % 8;
+
+        var next = document.getElementById("like-" + textCycleCounter);
+
+        current.style.display = 'none';
+        next.style.display = 'inline';
+    }, 3000); // repeat forever, polling every 3 seconds
+  }
+
+  window.onload = function() {
+    cycleText();
+  }
+</script>
 <body>
 
 <!-- Navbar (sit on top) -->
@@ -158,7 +190,17 @@
     <div class="left">
       Hi, I am James.
       <br>
-      I like solving problems.
+      I like
+      <div id="text-cycle">
+        <div id="like-0">solving problems.</div>
+        <div id="like-1">progamming.</div>
+        <div id="like-2">engineering.</div>
+        <div id="like-3">designing.</div>
+        <div id="like-4">learning.</div>
+        <div id="like-5">exercise.</div>
+        <div id="like-6">cider.</div>
+        <div id="like-7">food.</div>
+      </div>
     </div>
   </div> 
 </header>

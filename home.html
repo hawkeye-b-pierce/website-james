@@ -94,11 +94,11 @@
     padding-top: 70px;
   }
   #home .content {
-    width: 650px;
+    width: 700px;
     margin: 0 auto;
     overflow: hidden;
   }
-  #home .content div {
+  #home .content > div {
     margin-top: 55px;
     margin-left: 10px;
     font-size: 38px;
@@ -107,11 +107,6 @@
 
   #home #text-cycle {
     display: inline;
-    margin: 0px;
-  }
-
-  #home #text-cycle div {
-    display: none;
     margin: 0px;
   }
 
@@ -145,27 +140,80 @@
   #projects {
     overflow: hidden;
   }
+
+
+
+  .display-inline {
+    display: inline;
+  }
+
+  .fadeIn {
+    -webkit-animation: fadeIn 1s ease both;
+    animation: fadeIn 1s ease both;
+  }
+
+  .fadeOut {
+    -webkit-animation: fadeOut 1s ease both;
+    animation: fadeOut 1s ease both;
+  }
+
+  @-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+
+  @-webkit-keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0;}
+  }
+  @keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0;}
+  }
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript">
+  var textCycleCounter = 0;
+
   function cycleText () {
-
-    var textCycleCounter = 0;
-    document.getElementById("like-" + textCycleCounter).style.display = 'inline';
-
     window.setInterval(function () {
-        var current = document.getElementById("like-" + textCycleCounter);
+        var current = $("#like-" + textCycleCounter);
 
         textCycleCounter = (textCycleCounter + 1) % 8;
 
-        var next = document.getElementById("like-" + textCycleCounter);
+        var next = $("#like-" + textCycleCounter);
 
-        current.style.display = 'none';
-        next.style.display = 'inline';
-    }, 3000); // repeat forever, polling every 3 seconds
+        current.addClass( 'fadeOut' );
+
+        window.setTimeout(function () {
+          next
+            .removeAttr( 'style' )
+            .addClass( 'display-inline' )
+            .addClass( 'fadeIn' );
+        }, 1000);
+
+        //current.style.display = 'none';
+        //next.style.display = 'inline';
+    }, 4000); // repeat forever, polling every 3 seconds
   }
 
   window.onload = function() {
     cycleText();
+    for (i = 0; i < 8; i++) {
+      var like = document.getElementById("like-" + i);
+      like.addEventListener('webkitAnimationEnd', function() {
+        if ( this.classList.contains( 'fadeOut' ) ) {
+          this.style.display = 'none';
+          this.classList.remove( 'fadeOut' );
+          this.classList.remove( 'fadeIn' );
+          this.classList.remove( 'display-inline' );
+        }
+      });
+    }
   }
 </script>
 <body>
@@ -192,14 +240,14 @@
       <br>
       I like
       <div id="text-cycle">
-        <div id="like-0">solving problems.</div>
-        <div id="like-1">progamming.</div>
-        <div id="like-2">engineering.</div>
-        <div id="like-3">designing.</div>
-        <div id="like-4">learning.</div>
-        <div id="like-5">exercise.</div>
-        <div id="like-6">cider.</div>
-        <div id="like-7">food.</div>
+        <div id="like-0" style="display:inline;">solving problems.</div>
+        <div id="like-1" style="display:none;">progamming.</div>
+        <div id="like-2" style="display:none;">engineering.</div>
+        <div id="like-3" style="display:none;">designing.</div>
+        <div id="like-4" style="display:none;">learning.</div>
+        <div id="like-5" style="display:none;">exercise.</div>
+        <div id="like-6" style="display:none;">cider.</div>
+        <div id="like-7" style="display:none;">food.</div>
       </div>
     </div>
   </div> 

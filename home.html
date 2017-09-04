@@ -57,6 +57,9 @@
   .right {
       float: right!important;
   }
+  .left {
+      float: left!important;
+  }
   .bar .bar-item {
       float: left;
       width: auto;
@@ -89,15 +92,15 @@
     padding-top: 50px;
   }
   #home .content {
-    width: 390px;
+    width: 650px;
     margin: 0 auto;
     overflow: hidden;
   }
-  #home .content > * {
-    float: left;
-  }
   #home .content div {
-    margin-top: 90px;
+    margin-top: 55px;
+    margin-left: 10px;
+    font-size: 38px;
+    text-align: left;
   }
 </style>
 <body>
@@ -118,8 +121,8 @@
 <!-- Header with full-height image -->
 <header class="bgimg-1 display-container grayscale-min" id="home">
   <div class="content display-left text-white center">
-    <img src="james.svg" alt="myface">
-    <div>
+    <img src="james.svg" alt="myface" class="left">
+    <div class="left">
       Hi, I am James.
       <br>
       I like solving problems.

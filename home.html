@@ -98,10 +98,10 @@
     margin-left: 10px;
     font-size: 38px;
     text-align: left;
+    height: 100px;
   }
 
   #home #text-cycle {
-    display: inline;
     margin: 0px;
   }
 
@@ -169,12 +169,34 @@
     from {opacity: 1;}
     to {opacity: 0;}
   }
+
+
+
+
+
+#like-0 {
+  z-index: 10;
+  height: 400px;
+      -webkit-transition: all 4s ease-in-out;
+    -moz-transition: all 4s ease-in-out;
+    -o-transition: all 4s ease-in-out;
+    transition: all 4s ease-in-out;
+}
+
+  .rotateOut {
+    -webkit-transform : rotate(-180deg);
+    -moz-transform : rotate(-180deg);
+    -ms-transform : rotate(-180deg);
+    -o-transform : rotate(-180deg);
+    transform : rotate(-160deg);
+  }
+
+
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript">
   var textCycleCounter = 0;
   var textCycleSize = 0;
-  console.log(textCycleSize);
 
   function cycleText () {
     window.setInterval(function () {
@@ -196,12 +218,24 @@
     }, 4000);
   }
 
+  function cycleText2 () {
+console.log('here')
+    var current = $("#like-" + textCycleCounter);
+
+    textCycleCounter = (textCycleCounter + 1) % textCycleSize;
+
+    var next = $("#like-" + textCycleCounter);
+
+    current.addClass( 'rotateOut' );
+
+  }
+
   window.onload = function() {
     textCycleSize = $("*[id^='like']").length;
 
-    cycleText();
+    //cycleText();
 
-    for (i = 0; i < textCycleSize; i++) {
+/*    for (i = 0; i < textCycleSize; i++) {
       var like = document.getElementById("like-" + i);
       like.addEventListener('webkitAnimationEnd', function() {
         if ( this.classList.contains( 'fadeOut' ) ) {
@@ -211,7 +245,10 @@
           this.classList.remove( 'display-inline' );
         }
       });
-    }
+    }*/
+
+
+
   }
 </script>
 <body>
@@ -234,11 +271,9 @@
   <div class="content display-left text-white center">
     <img src="james.svg" alt="myface" class="left">
     <div class="left">
-      Hi, I am James.
-      <br>
-      I like
+      Hi, I am James. I <span onclick="cycleText2()">like</span>
       <div id="text-cycle">
-        <div id="like-0" style="display:inline;">solving problems.</div>
+        <div id="like-0">solving problems.</div>
         <div id="like-1" style="display:none;">progamming.</div>
         <div id="like-2" style="display:none;">designing.</div>
         <div id="like-3" style="display:none;">learning.</div>
@@ -246,6 +281,7 @@
       </div>
     </div>
   </div>
+  <div id="wall"></div>
 </header>
 
 <!-- About Section -->

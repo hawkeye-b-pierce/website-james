@@ -173,12 +173,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript">
   var textCycleCounter = 0;
+  var textCycleSize = 0;
+  console.log(textCycleSize);
 
   function cycleText () {
     window.setInterval(function () {
         var current = $("#like-" + textCycleCounter);
 
-        textCycleCounter = (textCycleCounter + 1) % 8;
+        textCycleCounter = (textCycleCounter + 1) % textCycleSize;
 
         var next = $("#like-" + textCycleCounter);
 
@@ -191,14 +193,15 @@
             .addClass( 'fadeIn' );
         }, 1000);
 
-        //current.style.display = 'none';
-        //next.style.display = 'inline';
-    }, 4000); // repeat forever, polling every 3 seconds
+    }, 4000);
   }
 
   window.onload = function() {
+    textCycleSize = $("*[id^='like']").length;
+
     cycleText();
-    for (i = 0; i < 8; i++) {
+
+    for (i = 0; i < textCycleSize; i++) {
       var like = document.getElementById("like-" + i);
       like.addEventListener('webkitAnimationEnd', function() {
         if ( this.classList.contains( 'fadeOut' ) ) {
@@ -237,15 +240,12 @@
       <div id="text-cycle">
         <div id="like-0" style="display:inline;">solving problems.</div>
         <div id="like-1" style="display:none;">progamming.</div>
-        <div id="like-2" style="display:none;">engineering.</div>
-        <div id="like-3" style="display:none;">designing.</div>
-        <div id="like-4" style="display:none;">learning.</div>
-        <div id="like-5" style="display:none;">exercise.</div>
-        <div id="like-6" style="display:none;">cider.</div>
-        <div id="like-7" style="display:none;">food.</div>
+        <div id="like-2" style="display:none;">designing.</div>
+        <div id="like-3" style="display:none;">learning.</div>
+        <div id="like-4" style="display:none;">cider.</div>
       </div>
     </div>
-  </div> 
+  </div>
 </header>
 
 <!-- About Section -->

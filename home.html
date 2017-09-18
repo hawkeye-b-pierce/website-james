@@ -6,6 +6,7 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="css/cycleOptions.css" />
 <style>
   body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
   body, html {
@@ -88,17 +89,11 @@
     padding-top: 70px;
     background-color: yellowgreen;
   }
+
   #home .content {
     width: 700px;
     margin: 0 auto;
     overflow: hidden;
-  }
-  #home .content > div {
-    margin-top: 55px;
-    margin-left: 10px;
-    font-size: 38px;
-    text-align: left;
-    height: 100px;
   }
 
   #home #text-cycle {
@@ -136,119 +131,58 @@
     overflow: hidden;
   }
 
-
-
-  .display-inline {
-    display: inline;
+  .likeStatement {
+    margin-top: 55px;
+    margin-left: 10px;
+    font-size: 38px;
   }
-
-  .fadeIn {
-    -webkit-animation: fadeIn 1s ease both;
-    animation: fadeIn 1s ease both;
-  }
-
-  .fadeOut {
-    -webkit-animation: fadeOut 1s ease both;
-    animation: fadeOut 1s ease both;
-  }
-
-  @-webkit-keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-  }
-  @keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-  }
-
-  @-webkit-keyframes fadeOut {
-    from {opacity: 1;}
-    to {opacity: 0;}
-  }
-  @keyframes fadeOut {
-    from {opacity: 1;}
-    to {opacity: 0;}
-  }
-
-
-
-
-
-#like-0 {
-  z-index: 10;
-  height: 400px;
-      -webkit-transition: all 4s ease-in-out;
-    -moz-transition: all 4s ease-in-out;
-    -o-transition: all 4s ease-in-out;
-    transition: all 4s ease-in-out;
-}
-
-  .rotateOut {
-    -webkit-transform : rotate(-180deg);
-    -moz-transform : rotate(-180deg);
-    -ms-transform : rotate(-180deg);
-    -o-transform : rotate(-180deg);
-    transform : rotate(-160deg);
-  }
-
 
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript">
-  var textCycleCounter = 0;
-  var textCycleSize = 0;
-
-  function cycleText () {
-    window.setInterval(function () {
-        var current = $("#like-" + textCycleCounter);
-
-        textCycleCounter = (textCycleCounter + 1) % textCycleSize;
-
-        var next = $("#like-" + textCycleCounter);
-
-        current.addClass( 'fadeOut' );
-
-        window.setTimeout(function () {
-          next
-            .removeAttr( 'style' )
-            .addClass( 'display-inline' )
-            .addClass( 'fadeIn' );
-        }, 1000);
-
-    }, 4000);
-  }
-
-  function cycleText2 () {
-console.log('here')
-    var current = $("#like-" + textCycleCounter);
-
-    textCycleCounter = (textCycleCounter + 1) % textCycleSize;
-
-    var next = $("#like-" + textCycleCounter);
-
-    current.addClass( 'rotateOut' );
-
-  }
-
   window.onload = function() {
-    textCycleSize = $("*[id^='like']").length;
 
-    //cycleText();
+    let options = document.getElementsByClassName("likeOption");
+    let i;
+    for (i = 0; i < options.length; i++) {
+      let option = options[i].innerHTML
 
-/*    for (i = 0; i < textCycleSize; i++) {
-      var like = document.getElementById("like-" + i);
-      like.addEventListener('webkitAnimationEnd', function() {
-        if ( this.classList.contains( 'fadeOut' ) ) {
-          this.style.display = 'none';
-          this.classList.remove( 'fadeOut' );
-          this.classList.remove( 'fadeIn' );
-          this.classList.remove( 'display-inline' );
-        }
-      });
-    }*/
+      options[i].innerHTML = ""
 
+      let characters = option.split("")
+      let j;
+      for (j = 0; j < characters.length; j++) {
+        let character = characters[j]
+        var div = document.createElement("DIV")
+        div.innerHTML = character
+        options[i].appendChild(div)
+      }
+    }
 
+    var likeOptionSize = $(".likeOption").length
+    var likeOptionCounter = 1
+    $(".likeOption:nth-child(1)")
+      .children().attr( 'style', 'display: inline-block;' )
+      .addClass("rotate")
 
+    window.setInterval(function () {
+      var current = $(".likeOption:nth-child(" + likeOptionCounter + ")")
+
+      likeOptionCounter = (likeOptionCounter % likeOptionSize) + 1
+
+      var next = $(".likeOption:nth-child(" + likeOptionCounter + ")")
+
+      current
+        .children()
+          .removeClass("rotate")
+          .attr( 'style', 'display: none;' )
+
+      next
+        .children()
+          .attr( 'style', 'display: inline-block;' )
+          .addClass("rotate")
+
+    }, 5000);
   }
 </script>
 <body>
@@ -270,18 +204,18 @@ console.log('here')
 <header class="bgimg-1 display-container grayscale-min" id="home">
   <div class="content display-left text-white center">
     <img src="james.svg" alt="myface" class="left">
-    <div class="left">
-      Hi, I am James. I <span onclick="cycleText2()">like</span>
-      <div id="text-cycle">
-        <div id="like-0">solving problems.</div>
-        <div id="like-1" style="display:none;">progamming.</div>
-        <div id="like-2" style="display:none;">designing.</div>
-        <div id="like-3" style="display:none;">learning.</div>
-        <div id="like-4" style="display:none;">cider.</div>
-      </div>
+    <div class="left likeStatement">
+      Hi, I am James. I like
+    </div>
+    <br>
+    <div class="left likeOptions">
+      <div class="likeOption">solving problems</div>
+      <div class="likeOption">progamming</div>
+      <div class="likeOption">designing</div>
+      <div class="likeOption">learning</div>
+      <div class="likeOption">cider</div>
     </div>
   </div>
-  <div id="wall"></div>
 </header>
 
 <!-- About Section -->

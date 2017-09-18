@@ -131,10 +131,19 @@
     overflow: hidden;
   }
 
-  .likeStatement {
-    margin-top: 55px;
-    margin-left: 10px;
+  .myLikes {
+    padding-top: 55px;
+    padding-left: 10px;
     font-size: 38px;
+  }
+
+  .space {
+    visibility: hidden;
+  }
+
+  .likeOption {
+    font-size: 45px;
+    font-weight: bolder;
   }
 
 </style>
@@ -154,6 +163,10 @@
       for (j = 0; j < characters.length; j++) {
         let character = characters[j]
         var div = document.createElement("DIV")
+        if ( character == ' ' ) {
+          character = '_'
+          div.className = "space";
+        }
         div.innerHTML = character
         options[i].appendChild(div)
       }
@@ -182,7 +195,7 @@
           .attr( 'style', 'display: inline-block;' )
           .addClass("rotate")
 
-    }, 5000);
+    }, 4000);
   }
 </script>
 <body>
@@ -202,18 +215,19 @@
 
 <!-- Header with full-height image -->
 <header class="bgimg-1 display-container grayscale-min" id="home">
-  <div class="content display-left text-white center">
+  <div class="content display-left text-white">
     <img src="james.svg" alt="myface" class="left">
-    <div class="left likeStatement">
-      Hi, I am James. I like
-    </div>
-    <br>
-    <div class="left likeOptions">
-      <div class="likeOption">solving problems</div>
-      <div class="likeOption">progamming</div>
-      <div class="likeOption">designing</div>
-      <div class="likeOption">learning</div>
-      <div class="likeOption">cider</div>
+    <div class="left myLikes">
+      <div class="likeStatement">
+        Hi, I am James. I like
+      </div>
+      <div class="likeOptions">
+        <div class="likeOption">Solving Problems</div>
+        <div class="likeOption">Progamming</div>
+        <div class="likeOption">Designing</div>
+        <div class="likeOption">Learning</div>
+        <div class="likeOption">Cider</div>
+      </div>
     </div>
   </div>
 </header>

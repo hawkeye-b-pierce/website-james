@@ -1,0 +1,25 @@
+
+.likeOption {
+  display: inline;
+}
+
+.likeOption div {
+  display: none;
+}
+
+.likeOptions .likeOption div {
+  opacity: 0;
+  overflow: hidden;
+  transform-origin: 50% 100%;
+}
+
+.rotate {
+  animation: rotateWord 4s linear 0s;
+}
+
+@keyframes rotateWord {
+  0% { opacity: 0; transform: rotate(45deg); }
+  20% { opacity: 1; transform: rotate(0deg); }
+  80% { opacity: 1; transform: rotate(0deg); }
+  100% { opacity: 0; transform: rotate(-45deg); }
+}

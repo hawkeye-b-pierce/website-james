@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/cycleOptions.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <style>
+      .no-cssanimations .rw-wrapper .rw-sentence .likeOption:first-child{
+        opacity: 1;
+      }
+    </style>
+<script type="text/javascript">
+
+  window.onload = function() {
+
+    let options = document.getElementsByClassName("likeOption");
+    let i;
+    for (i = 0; i < options.length; i++) {
+      let option = options[i].innerHTML
+
+      options[i].innerHTML = ""
+
+      let characters = option.split("")
+      let j;
+      for (j = 0; j < characters.length; j++) {
+        let character = characters[j]
+        var div = document.createElement("DIV")
+        div.innerHTML = character
+        options[i].appendChild(div)
+      }
+    }
+
+    var likeOptionSize = $(".likeOption").length
+    var likeOptionCounter = 1
+    $(".likeOption:nth-child(1)")
+      .children().attr( 'style', 'display: inline-block;' )
+      .addClass("rotate")
+
+    window.setInterval(function () {
+      var current = $(".likeOption:nth-child(" + likeOptionCounter + ")")
+
+      likeOptionCounter = (likeOptionCounter % likeOptionSize) + 1
+
+      var next = $(".likeOption:nth-child(" + likeOptionCounter + ")")
+
+      current
+        .children()
+          .removeClass("rotate")
+          .attr( 'style', 'display: none;' )
+
+      next
+        .children()
+          .attr( 'style', 'display: inline-block;' )
+          .addClass("rotate")
+
+    }, 5000);
+  }
+
+</script>
+  </head>
+  <body>
+    <section class="rw-wrapper">
+      <h2 class="rw-sentence">
+        <span>Hi, I am James. I like</span>
+        <div class="likeOptions">
+          <div class="likeOption">solving problems</div>
+          <div class="likeOption">progamming</div>
+          <div class="likeOption">designing</div>
+          <div class="likeOption">learning</div>
+          <div class="likeOption">cider</div>
+        </div>
+      </h2>
+    </section>
+  </body>
+</html>

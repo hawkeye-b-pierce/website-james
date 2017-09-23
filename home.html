@@ -6,7 +6,6 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="css/cycleOptions.css" />
 <style>
   body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
   body, html {
@@ -86,12 +85,12 @@
   header {
     height: 500px;
     margin-top: 60px;
-    padding-top: 70px;
+    padding-top: 100px;
     background-color: yellowgreen;
   }
 
   #home .content {
-    width: 700px;
+    width: 900px;
     margin: 0 auto;
     overflow: hidden;
   }
@@ -132,21 +131,42 @@
   }
 
   .myLikes {
-    padding-top: 55px;
+    padding-top: 20px;
     padding-left: 10px;
-    font-size: 38px;
+    font-size: 48px;
   }
 
   .space {
     visibility: hidden;
   }
 
+  .likeOptions {
+    position: relative;
+    top: -40px;
+  }
+
+  .likeOption div{
+    background: url('pattern-maze.png') no-repeat center;
+    background-size:300px;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+  }
+
   .likeOption {
-    font-size: 45px;
+    font-size: 75px;
     font-weight: bolder;
   }
 
+  .likeOption .first {
+    font-size: 100px;
+    vertical-align: text-bottom;
+    padding-right: 4px;
+  }
+
+
+
 </style>
+<link rel="stylesheet" type="text/css" href="css/cycleOptions.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript">
   window.onload = function() {
@@ -163,11 +183,17 @@
       for (j = 0; j < characters.length; j++) {
         let character = characters[j]
         var div = document.createElement("DIV")
-        if ( character == ' ' ) {
+
+        if ( character === ' ' ) {
           character = '_'
-          div.className = "space";
+          div.className = "space"
         }
+        else if (character === character.toUpperCase()){
+          div.className = "first"
+        }
+
         div.innerHTML = character
+
         options[i].appendChild(div)
       }
     }
@@ -175,7 +201,7 @@
     var likeOptionSize = $(".likeOption").length
     var likeOptionCounter = 1
     $(".likeOption:nth-child(1)")
-      .children().attr( 'style', 'display: inline-block;' )
+      .children().attr( 'style', 'display: inline-block; opacity:1;' )
       .addClass("rotate")
 
     window.setInterval(function () {

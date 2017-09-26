@@ -198,20 +198,32 @@
       }
     }
 
-    var likeOptionSize = $(".likeOption").length
-    var likeOptionCounter = 1
+    var likeOptionSize = document.getElementsByClassName("likeOption").length
+    var likeOptionCounter = 0
     $(".likeOption:nth-child(1)")
       .children().attr( 'style', 'display: inline-block; opacity:1;' )
       .addClass("rotate")
 
     window.setInterval(function () {
-      var current = $(".likeOption:nth-child(" + likeOptionCounter + ")")
+      var current = document.getElementsByClassName("likeOption")[likeOptionCounter]
 
-      likeOptionCounter = (likeOptionCounter % likeOptionSize) + 1
+      likeOptionCounter = (likeOptionCounter + 1) % likeOptionSize
 
-      var next = $(".likeOption:nth-child(" + likeOptionCounter + ")")
+      var next = document.getElementsByClassName("likeOption")[likeOptionCounter]
 
-      current
+      for ( var i = 0; i < (current.children.length); i++ ) {
+        let child = current.children[i]
+        child.className = "rotate"
+        child.style.display = 'none'
+      }
+
+      for ( var i = 0; i < (next.children.length); i++ ) {
+        let a = next.children[i]
+        a.className = "rotate"
+        a.style.display = 'inline-block'
+      }
+
+/*      current
         .children()
           .removeClass("rotate")
           .attr( 'style', 'display: none;' )
@@ -219,7 +231,7 @@
       next
         .children()
           .attr( 'style', 'display: inline-block;' )
-          .addClass("rotate")
+          .addClass("rotate")*/
 
     }, 4000);
   }
